@@ -47,7 +47,8 @@ function trackTheirPizza(contact) {
     pizzapi.Track.byPhone(
         contact.phoneNumber,
         (pizzaInfo) => {
-            if (pizzaInfo.Items && pizzaInfo.getItems.length > 0) {
+            // This is a guess until I actually order a pizza
+            if (pizzaInfo.OrderStatuses && pizzaInfo.OrderStatuses.length > 0) {
             	console.log('[checkRecentOrders]: found order ', pizzaInfo);
             	sendTweet(contact, pizzaInfo);
             }
