@@ -16,4 +16,8 @@ entry.createContact({
     }
 }, {}, () => {
 
+});
+
+entry.getTweets({}, {}, () => {
+    
 })
