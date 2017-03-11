@@ -47,6 +47,19 @@ Resources:
           Type: Api
           Properties:
             Path: /tweets
+            Method: get  
+  MockPizzaOrder:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.mockOrder
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBReadOnlyAccess
+      Timeout: 10
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /mockOrder
             Method: get
   CheckRecentOrders:
     Type: AWS::Serverless::Function

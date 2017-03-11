@@ -57,12 +57,14 @@ function trackTheirPizza(contact) {
 
 function sendTweet(contact, pizzaInfo) {
 	tClient.post('statuses/update', 
-		{status: 'I know what ordered '.concat(contact.firstName).concat(' @').concat(contact.twitterHandle)}, 
+		{status: 'I know what ordered ${contact.firstName} @${contact.twitterHandle}'}, 
 		(error, tweet, response) => {
 			if (!error) {
 				console.log('checkRecentOrders: tweet successful');
 				console.log(tweet);
-			}
+			} else {
+                console.log('we bombed: ${err}');
+            }
 		}
 	);
 };
