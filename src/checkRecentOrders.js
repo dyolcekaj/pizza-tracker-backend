@@ -33,10 +33,10 @@ module.exports = (event, context, callback) => {
         }
     
         console.log(`RETRIEVED ITEM SUCCESSFULLY WITH doc = ${data.Items}`);
-        for (let i = 0; i < contacts.length; i++) {
-            trackTheirPizza(contacts[i]);
+        for (let i = 0; i < data.Items.length; i++) {
+            trackTheirPizza(data.Items[i]);
         }
-        callback(null, contacts);
+        callback(null, {});
     }).catch((err) => {
         console.log(`GET ITEM FAILED FOR doc = ${data.Item.doc}, WITH ERROR: ${err}`);
         callback(null, err);

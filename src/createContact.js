@@ -9,8 +9,8 @@ const tableName = process.env.TABLE_NAME;
 module.exports = (event, context, callback) => {
 	console.log('[createContact]: received event = ', event);
 	let item = {
-		phoneNumber: event.body.phoneNumber,
-		doc: event.body
+		phoneNumber: event.phoneNumber,
+		doc: event
 	};
 
 	let params = {

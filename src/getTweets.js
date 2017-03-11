@@ -8,7 +8,7 @@ var tClient = new twitter({
 	access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
-const screenName = "pizza-tracker";
+const screenName = "pinkcloyd1610";
 
 module.exports = (event, context, callback) => {
     console.log('[twitter]: getting tweets, event = ', event);
@@ -21,10 +21,13 @@ module.exports = (event, context, callback) => {
 
     tClient.get('statuses/user_timeline', 
 		params, 
-		function(error, tweet, response) {
+		(error, tweets, response) => {
 			if (!error) {
-				console.log('checkRecentOrders: tweet successful');
-				console.log(tweet);
+				console.log('getTweets: tweet successful');
+				console.log(tweets);
+				return tweets;
+			} else {
+				console.log(error);
 			}
 		}
 	);
