@@ -57,7 +57,7 @@ function trackTheirPizza(contact) {
 
 function sendTweet(contact, pizzaInfo) {
 	tClient.post('statuses/update', 
-		{status: 'I know what ordered '.concat(contact.name)}, 
+		{status: 'I know what ordered '.concat(contact.firstName).concat(' @').concat(contact.twitterHandle)}, 
 		(error, tweet, response) => {
 			if (!error) {
 				console.log('checkRecentOrders: tweet successful');

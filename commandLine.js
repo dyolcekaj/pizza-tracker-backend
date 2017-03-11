@@ -11,7 +11,8 @@ entry.getContacts({}, {}, () => {
 entry.createContact({
     body: {
         phoneNumber: 4029177320,
-        name: 'Jake Cloyd',
+        firstName: 'Jake',
+        lastName: 'Cloyd',
         twitterHandler: 'pinkcloyd1610'
     }
 }, {}, () => {
