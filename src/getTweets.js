@@ -8,7 +8,7 @@ var tClient = new twitter({
 	access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
-const screenName = "pinkcloyd1610";
+const screenName = "pizza_tracker";
 
 module.exports = (event, context, callback) => {
     console.log('[twitter]: getting tweets, event = ', event);
