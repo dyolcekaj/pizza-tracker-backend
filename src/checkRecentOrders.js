@@ -47,13 +47,6 @@ function trackTheirPizza(contact) {
     pizzapi.Track.byPhone(
         contact.phoneNumber,
         (pizzaInfo) => {
-            // This is a guess until I actually order a pizza
-            console.log(pizzaInfo);
-            console.log('[checkRecentOrders]: found order outer', JSON.stringify(pizzaInfo.orders[0]));
-            	
-            console.log(pizzaInfo.orders[0].OrderStatus[0].OrderID.length > 0);
-            console.log(pizzaInfo.orders[0].OrderStatus[0].DeliveryTime.length > 0)
-
             if (pizzaInfo.orders && pizzaInfo.orders.length > 0
                     && pizzaInfo.orders[0].OrderStatus
                     && pizzaInfo.orders[0].OrderStatus.length > 0
