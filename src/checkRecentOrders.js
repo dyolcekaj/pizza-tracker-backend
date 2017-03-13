@@ -53,8 +53,7 @@ function trackTheirPizza(contact) {
                     && pizzaInfo.orders[0].OrderStatus[0].OrderID
                     && pizzaInfo.orders[0].OrderStatus[0].OrderID.length > 0
                     && pizzaInfo.orders[0].OrderStatus[0].OrderID[0]
-                    && pizzaInfo.orders[0].OrderStatus[0].DeliveryTime.length <= 0
-                    && pizzaInfo.orders[0].OrderStatus[0].DeliveryTime[0]) {
+                    && !pizzaInfo.orders[0].OrderStatus[0].DeliveryTime[0]) {
             	console.log('[checkRecentOrders]: found order ', JSON.stringify(pizzaInfo.orders[0]));
             	sendTweet(contact.doc, pizzaInfo);
             }
