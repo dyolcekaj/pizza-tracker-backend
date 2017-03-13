@@ -1,2 +1,2 @@
 # pizza-tracker-backend
-Track people that order dominos
+Tweet at people that order dominos
