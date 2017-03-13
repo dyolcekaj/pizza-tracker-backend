@@ -18,7 +18,64 @@ Resources:
             Method: get
   CreateContact:
     Type: AWS::Serverless::Function
+    Properties:AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  GetContacts:
+    Type: AWS::Serverless::Function
     Properties:
+      Handler: index.getContacts
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBReadOnlyAccess
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ContactTable
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /contacts
+            Method: get
+  CreateContact:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.createContact
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBFullAccess
+      Timeout: 10
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ContactTable
+      Events:
+        PostResource:
+          Type: Api
+          Properties:
+            Path: /contacts
+            Method: post
+  CheckRecentOrders:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.checkRecentOrders
+      Runtime: nodejs4.3
+      Policies: AmazonDynamoDBFullAccess
+      Timeout: 30
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ContactTable
+     Events:
+        CheckOrdersScheduledEvent:
+          Type: Schedule
+          Properties:
+            Schedule: rate(5 minutes)
+  ContactTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+          Name: phoneNumber
+          Type: String
+      ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
       Handler: index.createContact
       Runtime: nodejs4.3
       Policies: AmazonDynamoDBFullAccess

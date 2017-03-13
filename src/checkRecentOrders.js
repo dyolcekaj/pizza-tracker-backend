@@ -51,7 +51,7 @@ function trackTheirPizza(contact) {
             console.log(pizzaInfo);
             if (pizzaInfo.orders && pizzaInfo.orders.length > 0) {
             	console.log('[checkRecentOrders]: found order ', pizzaInfo);
-            	sendTweet(contact, pizzaInfo);
+            	sendTweet(contact.doc, pizzaInfo);
             }
         }
     );
