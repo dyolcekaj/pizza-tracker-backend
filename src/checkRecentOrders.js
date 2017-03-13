@@ -49,8 +49,17 @@ function trackTheirPizza(contact) {
         (pizzaInfo) => {
             // This is a guess until I actually order a pizza
             console.log(pizzaInfo);
-            if (pizzaInfo.orders && pizzaInfo.orders.length > 0) {
-            	console.log('[checkRecentOrders]: found order ', pizzaInfo);
+            console.log('[checkRecentOrders]: found order outer', JSON.stringify(pizzaInfo.orders[0]));
+            	
+            console.log(pizzaInfo.orders[0].OrderStatus[0].OrderID.length > 0);
+            console.log(pizzaInfo.orders[0].OrderStatus[0].DeliveryTime.length > 0)
+
+            if (pizzaInfo.orders && pizzaInfo.orders.length > 0
+                    && pizzaInfo.orders[0].OrderStatus
+                    && pizzaInfo.orders[0].OrderStatus.length > 0
+                    && pizzaInfo.orders[0].OrderStatus[0].OrderID.length > 0
+                    && pizzaInfo.orders[0].OrderStatus[0].DeliveryTime.length <= 0) {
+            	console.log('[checkRecentOrders]: found order ', JSON.stringify(pizzaInfo.orders[0]));
             	sendTweet(contact.doc, pizzaInfo);
             }
         }
@@ -59,7 +68,7 @@ function trackTheirPizza(contact) {
 
 function sendTweet(contact, pizzaInfo) {
 	tClient.post('statuses/update', 
-		{status: 'I know what ordered '.concat(contact.firstName).concat(' @').concat(contact.twitterHandle)}, 
+		{status: 'I know what you ordered '.concat(contact.firstName).concat(' @').concat(contact.twitterHandle)}, 
 		(error, tweet, response) => {
 			if (!error) {
 				console.log('checkRecentOrders: tweet successful');
