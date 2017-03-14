@@ -18,26 +18,6 @@ Resources:
             Method: get
   CreateContact:
     Type: AWS::Serverless::Function
-    Properties:AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Resources:
-  GetContacts:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.getContacts
-      Runtime: nodejs4.3
-      Policies: AmazonDynamoDBReadOnlyAccess
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref ContactTable
-      Events:
-        GetResource:
-          Type: Api
-          Properties:
-            Path: /contacts
-            Method: get
-  CreateContact:
-    Type: AWS::Serverless::Function
     Properties:
       Handler: index.createContact
       Runtime: nodejs4.3
@@ -89,56 +69,3 @@ Resources:
           Properties:
             Path: /contacts
             Method: post
-  GetTweets:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.getTweets
-      Runtime: nodejs4.3
-      Policies: AmazonDynamoDBReadOnlyAccess
-      Timeout: 10
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref ContactTable
-      Events:
-        GetResource:
-          Type: Api
-          Properties:
-            Path: /tweets
-            Method: get  
-  MockPizzaOrder:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.mockOrder
-      Runtime: nodejs4.3
-      Policies: AmazonDynamoDBReadOnlyAccess
-      Timeout: 10
-      Events:
-        GetResource:
-          Type: Api
-          Properties:
-            Path: /mockOrder
-            Method: get
-  CheckRecentOrders:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.checkRecentOrders
-      Runtime: nodejs4.3
-      Policies: AmazonDynamoDBFullAccess
-      Timeout: 30
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref ContactTable
-      Events:
-        CheckOrdersScheduledEvent:
-          Type: Schedule
-          Properties:
-            Schedule: rate(5 minutes)
-  ContactTable:
-    Type: AWS::Serverless::SimpleTable
-    Properties:
-      PrimaryKey:
-          Name: phoneNumber
-          Type: String
-      ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
