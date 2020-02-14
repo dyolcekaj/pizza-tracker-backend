@@ -13,9 +13,9 @@
   "author": "Jake Cloyd",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.23.0",
-    "dominos": "^2.1.1",
-    "twitter": "^1.7.0",
-    "xml2js": "^0.4.17"
+    "aws-sdk": "^2.618.0",
+    "dominos": "2.1.1",
+    "twitter": "^1.7.1",
+    "xml2js": "0.4.17"
   }
 }

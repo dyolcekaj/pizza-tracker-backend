@@ -47,6 +47,7 @@ function trackTheirPizza(contact) {
     pizzapi.Track.byPhone(
         contact.phoneNumber,
         (pizzaInfo) => {
+            console.log('[checkRecentOrders]: order: ', JSON.stringify(pizzaInfo))
             if (pizzaInfo.orders && pizzaInfo.orders.length > 0
                     && pizzaInfo.orders[0].OrderStatus
                     && pizzaInfo.orders[0].OrderStatus.length > 0
