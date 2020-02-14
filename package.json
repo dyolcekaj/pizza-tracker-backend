@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cfn-package": "aws cloudformation package --template-file ./sam.yaml --output-template-file ./cfn.generated.yaml --s3-bucket pizza-tracker-lambda-deploys --region us-east-1",
-    "precfn-deploy": "npm run-script cfn-package",
-    "cfn-deploy": "aws cloudformation deploy --template-file ./cfn.generated.yaml --stack-name pizza-tracker  --capabilities CAPABILITY_IAM --region us-east-1",
-    "deploy": "npm run-script cfn-deploy"
+    "package": "aws cloudformation package --template-file ./sam.yaml --output-template-file ./cfn.generated.yaml --s3-bucket pizza-tracker-lambda-deploys --region us-east-1",
+    "deploy": "aws cloudformation deploy --template-file ./cfn.generated.yaml --stack-name pizza-tracker  --capabilities CAPABILITY_IAM --region us-east-1",
   },
   "author": "Jake Cloyd",
   "license": "MIT",

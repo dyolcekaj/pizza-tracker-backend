@@ -4,8 +4,9 @@ Resources:
   GetContacts:
     Type: AWS::Serverless::Function
     Properties:
+      CodeUri: ./index.js
       Handler: index.getContacts
-      Runtime: nodejs4.3
+      Runtime: nodejs12.x
       Policies: AmazonDynamoDBReadOnlyAccess
       Environment:
         Variables:
@@ -19,8 +20,9 @@ Resources:
   CreateContact:
     Type: AWS::Serverless::Function
     Properties:
+      CodeUri: ./index.js
       Handler: index.createContact
-      Runtime: nodejs4.3
+      Runtime: nodejs12.x
       Policies: AmazonDynamoDBFullAccess
       Timeout: 10
       Environment:
@@ -35,14 +37,15 @@ Resources:
   CheckRecentOrders:
     Type: AWS::Serverless::Function
     Properties:
+      CodeUri: ./index.js
       Handler: index.checkRecentOrders
-      Runtime: nodejs4.3
+      Runtime: nodejs12.x
       Policies: AmazonDynamoDBFullAccess
       Timeout: 30
       Environment:
         Variables:
           TABLE_NAME: !Ref ContactTable
-     Events:
+      Events:
         CheckOrdersScheduledEvent:
           Type: Schedule
           Properties:
@@ -56,16 +59,3 @@ Resources:
       ProvisionedThroughput:
           ReadCapacityUnits: 5
           WriteCapacityUnits: 5
-      Handler: index.createContact
-      Runtime: nodejs4.3
-      Policies: AmazonDynamoDBFullAccess
-      Timeout: 10
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref ContactTable
-      Events:
-        PostResource:
-          Type: Api
-          Properties:
-            Path: /contacts
-            Method: post
