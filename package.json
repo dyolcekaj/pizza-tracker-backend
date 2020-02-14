@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.23.0",
-    "pizzapi": "0.0.8",
+    "dominos": "^2.1.1",
     "twitter": "^1.7.0",
     "xml2js": "^0.4.17"
   }

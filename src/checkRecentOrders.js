@@ -1,6 +1,6 @@
 'use strict';
 
-const pizzapi = require('pizzapi');
+const pizzapi = require('dominos');
 const AWS = require('aws-sdk');
 
 const dynamo = new AWS.DynamoDB.DocumentClient();
